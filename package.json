@@ -1,36 +1,40 @@
 {
-  "name": "big-mac",
+  "name": "mern",
   "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "description": "Receiving an amount input of the users local currency. Then Converting the given input to a total sum of McDonald's Big Macs the user would be able to purchase locally, as well as the amount of McDonald's Big Macs the user would be able to purchase in another country.     ## Installation ```bash npm start ``` ## License The data is published under The Economist License. For more information please visit: [Use of Economist Content.](http://www.economist.com/legal/terms-of-use)",
-  "main": "index.js",
-  "devDependencies": {},
+  "main": "server.js",
+  "scripts": {
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "seed": "node scripts/seedDB.js",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build",
+    "test": "npm run lint && cross-env NODE_ENV=test mocha -u tdd --reporter spec --exit",
+    "lint": "eslint \"**/*.js\"",
+    "fix": "eslint --fix ."
+  },
+  "author": "John Morgan Broaddus IV",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.13.0",
+    "nodemon": "^1.18.7"
+  },
+  "dependencies": {
+    "babel-eslint": "^10.0.1",
+    "express": "^4.17.1",
+    "if-env": "^1.0.4",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.10.3",
+    "sequelize-cli": "^5.5.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/johnbroaddusivccv/big-mac.git"
@@ -38,8 +42,6 @@
   "keywords": [
     "N/A"
   ],
-  "author": "John Morgan Broaddus IV",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/johnbroaddusivccv/big-mac/issues"
   },
