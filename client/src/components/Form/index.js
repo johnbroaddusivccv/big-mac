@@ -5,7 +5,7 @@ class Form extends Component {
   // Setting the component's initial state
   state = {
     country: "",
-    currency: ""
+    currency: "0.00"
   };
 
   handleInputChange = event => {
