@@ -24,10 +24,10 @@ class Form extends Component {
     event.preventDefault();
 
     // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
-    alert(`You are in ${this.state.country} ${this.state.lastName}`);
+    alert(`You are in ${this.state.country} ${this.state.currency}`);
     this.setState({
       country: "",
-      lastName: ""
+      currency: ""
     });
   };
 
@@ -36,22 +36,25 @@ class Form extends Component {
     return (
       <div>
         <p>
-          You are in {this.state.firstName} {this.state.lastName}
+          You are in {this.state.country} {this.state.lastName}
         </p>
         <form className="form">
           <input
-            value={this.state.firstName}
-            name="firstName"
+            value={this.state.country}
+            name="country"
             onChange={this.handleInputChange}
             type="text"
-            placeholder="First Name"
+            placeholder="Country"
           />
+          <article>${this.state.currency}</article>
           <input
-            value={this.state.lastName}
-            name="lastName"
+            value={this.state.currency}
+            name="currency"
             onChange={this.handleInputChange}
-            type="text"
-            placeholder="Last Name"
+            min="1.00"
+            step="0.01"
+            max="2500"
+            type="number"
           />
           <button onClick={this.handleFormSubmit}>Submit</button>
         </form>
